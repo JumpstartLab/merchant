@@ -21,6 +21,7 @@
     <th>Items</th>
     <th>Title</th>
     <th>Quantity</th>
+    <th>Stock</th>
     <th>Unit Price</th>
     <th>Subtotal</th>
     <th>Remove</th>
@@ -30,7 +31,8 @@
   <tr>
     <td><%= image_tag "products/#{item.product.image_url}" %></td>
     <td><%= item.product.title %></td>
-    <td><%= item.quantity %></td>
+    <td><%= link_to item.quantity, edit_order_item_path(item) %></td>
+    <td><%= print_stock item.product.stock, item.quantity %></td>
     <td><%= print_price item.product.price %></td>
     <td><%= print_price item.subtotal %></td>
     <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
