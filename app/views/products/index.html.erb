@@ -3,13 +3,10 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Title</th>
       <th>Price</th>
-      <th>Description</th>
-      <th>Image url</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Stock</th>
     </tr>
   </thead>
 
@@ -23,6 +20,7 @@
           </span><%= product.description %>
         </td>
         <td><%= print_price(product.price) %></td>
+        <td><%= print_stock(product.stock) %></td>
       </tr>
     <% end %>
   </tbody>
