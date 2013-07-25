@@ -1,0 +1,33 @@
+<h1>All Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Image url</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= image_tag "products/#{product.image_url}" %></td>
+        <td>
+          <span class="product_title">
+          <%= link_to product.title, product_path(product)  %>
+          </span><%= product.description %>
+        </td>
+        <td><%= print_price(product.price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create A New Product', new_product_path %>
