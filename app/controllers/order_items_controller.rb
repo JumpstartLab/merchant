@@ -13,7 +13,7 @@ class OrderItemsController < ApplicationController
 
     respond_to do |format|
       if @order_item.save
-        format.html { redirect_to products_path, notice: 'Successfully added product to cart' }
+        format.html { redirect_to @order, notice: 'Successfully added product to cart' }
         format.json { render action: 'show', status: :created, location: @order_item }
       else
         format.html { render action: 'new' }
@@ -41,7 +41,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item.destroy
     respond_to do |format|
-      format.html { redirect_to order_items_url }
+      format.html { redirect_to @order_item.order }
       format.json { head :no_content }
     end
   end

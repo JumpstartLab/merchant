@@ -1,18 +1,44 @@
-<p id="notice"><%= notice %></p>
+<h1>Your Order</h1>
 
-<p>
-  Item Count: <%= @order.order_items.count %>
-</p>
+<table>
+  <tr>
+    <th>Customer</th>
+    <td><%= @order.user_id %></td>
+  </tr>
+  <tr>
+    <th>Status:</th>
+    <td><%= @order.status %></td>
+  </tr>
+  <tr>
+    <th>Items:</th>
+    <td><%= @order.order_items.count %></td>
+  </tr>
+  <tr>
+    <th>Order Total:</th>
+    <td><%= print_price @order.total %></td>
+  </tr>
+  <tr>
+    <th>Items</th>
+    <th>Title</th>
+    <th>Quantity</th>
+    <th>Unit Price</th>
+    <th>Subtotal</th>
+    <th>Remove</th>
+  </tr>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
+  <% @order.order_items.each do |item| %>
+  <tr>
+    <td><%= image_tag "products/#{item.product.image_url}" %></td>
+    <td><%= item.product.title %></td>
+    <td><%= item.quantity %></td>
+    <td><%= print_price item.product.price %></td>
+    <td><%= print_price item.subtotal %></td>
+    <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
-</p>
+  </tr>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+  <% end %>
+</table>
+
+<p><%= link_to "Empty Cart", @order, confirm: 'Are you sure?', method: :delete %></p>
+
