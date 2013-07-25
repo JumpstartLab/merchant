@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Customer</th>
-    <td><%= @order.user_id %></td>
+    <td><%= @order.user.name if @order.user %></td>
   </tr>
   <tr>
     <th>Status:</th>
