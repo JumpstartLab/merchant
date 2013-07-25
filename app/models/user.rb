@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :orders
+  has_many :addresses
 
   def self.find_or_create_by_auth(auth_data)
       find_or_create_by_provider_and_uid(auth_data["provider"], auth_data["uid"],
